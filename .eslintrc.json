@@ -1,0 +1,42 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "jsx-a11y/label-has-associated-control": ["error", { "required": { "some": ["id", "nesting"] }}],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": ["error", {
+      "reservedFirst": ["key"]
+    }],
+    "react/require-default-props": "off",
+    "react/sort-prop-types": "error",
+    "react/state-in-constructor": ["error", "never"],
+    "no-console": "off",
+    "no-param-reassign": "off",
+    "import/prefer-default-export": "off",
+    "linebreak-style": "off",
+    "arrow-parens": "off",
+    "react/prop-types": "off",
+    "arrow-body-style": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "no-void": "off",
+    "react/button-has-type": "off",
+    "no-confusing-arrow": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        "sample/**",
+        "test/**"
+      ],
+      "rules": {
+        "import/no-unresolved": "off",
+        "react-hooks/exhaustive-deps": "off"
+      }
+    }
+  ]
+}
