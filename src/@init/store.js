@@ -1,6 +1,8 @@
 // Core
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 // Middlewares
 import { middlewares } from './middleware';
@@ -16,4 +18,9 @@ export const rootReducer = combineReducers({
   todos,
 });
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+export const store = createStore(
+  persistReducer({ key: 'root', storage }, rootReducer),
+  composeWithDevTools(applyMiddleware(...middlewares)),
+);
+
+export const persistor = persistStore(store);

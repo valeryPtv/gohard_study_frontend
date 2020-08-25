@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 // Redux
 import { useTodosQuery, useTodosMutations } from '../../bus/todos';
 
+// Elements
+import { Button } from '../../elements';
+
 // Styles
-import { Todo } from './styles';
+import { Header, Todo } from './styles';
 
 export const Main = () => {
   const [text, setText] = useState('');
@@ -24,24 +27,24 @@ export const Main = () => {
 
   return (
     <section>
-      <header>
+      <Header>
         <input
           onChange={(event) => setText(event.target.value)}
           value={text}
         />
-        <button onClick={onCreate}>Create</button>
-      </header>
+        <Button onClick={onCreate}>Create</Button>
+      </Header>
       <main>
         {
           data.map((todo, index) => (
             <Todo key={todo.id} isColor={Boolean(index % 2)}>
               <p>{todo.text}</p>
-              <button onClick={() => void updateMutation({ isCompleted: !todo.isCompleted }, todo.id)}>
+              <Button onClick={() => void updateMutation({ isCompleted: !todo.isCompleted }, todo.id)}>
                 {todo.isCompleted ? 'Done' : 'In progress'}
-              </button>
-              <button onClick={() => void deleteMutation(todo.id)}>
+              </Button>
+              <Button onClick={() => void deleteMutation(todo.id)}>
                 Delete
-              </button>
+              </Button>
             </Todo>
           ))
         }

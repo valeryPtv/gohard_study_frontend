@@ -2,6 +2,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
+// Elemetnts
+import { Button } from '../../elements';
+
 // Styles
 import { Container } from './styles';
 
@@ -11,8 +14,8 @@ export const Header = ({ isOnline }) => {
   return (
     <Container isOnline={isOnline}>
       <div>
-        <button onClick={() => void push('/')}>Main</button>
-        <button onClick={() => void push('/info')}>Info</button>
+        <Button onClick={() => void push('/')}>Main</Button>
+        <Button onClick={() => void push('/info')}>Info</Button>
       </div>
       <h2>{isOnline ? 'Online' : 'Offline'}</h2>
     </Container>
