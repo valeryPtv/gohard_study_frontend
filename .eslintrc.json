@@ -27,7 +27,8 @@
     "react/button-has-type": "off",
     "no-confusing-arrow": "off",
     "implicit-arrow-linebreak": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "no-unused-expressions": "off"
   },
   "overrides": [
     {

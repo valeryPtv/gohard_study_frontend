@@ -6,7 +6,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { useUi } from '../../bus/ui';
 
 // Pages
-import { Main, Info } from '../../pages';
+import { Main, Info } from '../../pages'; // eslint-disable-line import/no-cycle
 
 // Components
 import { Header } from '../../components';
@@ -19,6 +19,7 @@ export const App = () => {
   const { ui: { isOnline }, setOnlineStatus } = useUi();
 
   useEffect(() => {
+    setOnlineStatus(navigator.onLine);
     window.addEventListener('online', () => void setOnlineStatus(navigator.onLine));
     window.addEventListener('offline', () => void setOnlineStatus(navigator.onLine));
   }, []); // eslint-disable-line

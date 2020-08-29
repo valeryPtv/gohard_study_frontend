@@ -14,18 +14,3 @@ export const Header = styled.header`
         margin-right: 10px;
     }
 `;
-
-export const Todo = styled.div`
-    display: grid;
-    box-sizing: border-box;
-    grid-template-columns: 33% 33% 33%;
-    align-items: center;
-    font-family: sans-serif;
-    padding: 10px;
-    background-color: ${({ isColor }) => isColor ? 'lightgray' : 'white'};
-
-    p {
-        font-size: 20px;
-        padding-right: 10px;
-    }
-`;

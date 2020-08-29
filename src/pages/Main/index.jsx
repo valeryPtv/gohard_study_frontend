@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 
-// Redux
-import { useTodosQuery, useTodosMutations } from '../../bus/todos';
+// Components
+import { Todo } from '../../components';
 
 // Elements
 import { Button } from '../../elements';
 
+// Redux
+import { useTodosQuery, useTodosMutations } from '../../bus/todos';
+
 // Styles
-import { Header, Todo } from './styles';
+import { Header } from './styles';
 
 export const Main = () => {
   const [text, setText] = useState('');
-  const { data, loading } = useTodosQuery();
+  const { data } = useTodosQuery();
   const { createMutation, updateMutation, deleteMutation } = useTodosMutations();
 
-  if (!data || loading) {
+  if (!data) {
     return <div>Loading...</div>;
   }
 
@@ -37,15 +40,13 @@ export const Main = () => {
       <main>
         {
           data.map((todo, index) => (
-            <Todo key={todo.id} isColor={Boolean(index % 2)}>
-              <p>{todo.text}</p>
-              <Button onClick={() => void updateMutation({ isCompleted: !todo.isCompleted }, todo.id)}>
-                {todo.isCompleted ? 'Done' : 'In progress'}
-              </Button>
-              <Button onClick={() => void deleteMutation(todo.id)}>
-                Delete
-              </Button>
-            </Todo>
+            <Todo
+              key={todo.id}
+              isColor={Boolean(index % 2)}
+              {...todo}
+              deleteHandler={() => void deleteMutation(todo.id)}
+              updateHandler={() => void updateMutation({ isCompleted: !todo.isCompleted }, todo.id)}
+            />
           ))
         }
       </main>

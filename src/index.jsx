@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './@init';
 
 // Containers
-import { App } from './containers';
+import { App } from './containers/App';
 
 // Service worker
 import * as serviceWorker from './serviceWorker';
