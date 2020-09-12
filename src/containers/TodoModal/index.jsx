@@ -8,7 +8,7 @@ import { Modal, Todo } from '../../components';
 import { AdaptiveScroll, Button } from '../../elements';
 
 // Redux
-import { useTodosQuery, useTodosMutations } from '../../bus/todos';
+import { useTodosQuery, useTodosMutations } from '../../bus/todosNew';
 
 // Styles
 import { Header, Footer } from './styles';
@@ -16,7 +16,7 @@ import { Header, Footer } from './styles';
 export const TodoModal = ({ closeHandler }) => {
   const headerRef = useRef(null);
   const footerRef = useRef(null);
-  const { data/* , loading */ } = useTodosQuery();
+  const { data } = useTodosQuery();
   const { updateMutation, deleteMutation } = useTodosMutations();
 
   return (
@@ -35,8 +35,10 @@ export const TodoModal = ({ closeHandler }) => {
               key={todo.id}
               isColor={Boolean(index % 2)}
               {...todo}
-              deleteHandler={() => void deleteMutation(todo.id)}
-              updateHandler={() => void updateMutation({ isCompleted: !todo.isCompleted }, todo.id)}
+              deleteHandler={() => void deleteMutation({ todoId: todo.id })}
+              updateHandler={() => void updateMutation({
+                todoId: todo.id, body: { isCompleted: !todo.isCompleted },
+              })}
             />
           ))
         }

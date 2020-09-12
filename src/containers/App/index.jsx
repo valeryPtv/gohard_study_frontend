@@ -1,7 +1,7 @@
 // Core
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
+import { ReactQueryDevtools } from 'react-query-devtools';
 // Redux
 import { useUi } from '../../bus/ui';
 
@@ -25,23 +25,26 @@ export const App = () => {
   }, []); // eslint-disable-line
 
   return (
-    <Container>
-      <GlobalReset />
-      <Header isOnline={isOnline} />
-      <Switch>
-        <Route
-          component={Info}
-          path="/info"
-        />
-        <Route
-          component={Main}
-          path="/"
-        />
-        <Redirect
-          component={Main}
-          to="/"
-        />
-      </Switch>
-    </Container>
+    <>
+      <Container>
+        <GlobalReset />
+        <Header isOnline={isOnline} />
+        <Switch>
+          <Route
+            component={Info}
+            path="/info"
+          />
+          <Route
+            component={Main}
+            path="/"
+          />
+          <Redirect
+            component={Main}
+            to="/"
+          />
+        </Switch>
+      </Container>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
   );
 };

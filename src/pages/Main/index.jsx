@@ -7,7 +7,7 @@ import { Todo } from '../../components';
 import { Button } from '../../elements';
 
 // Redux
-import { useTodosQuery, useTodosMutations } from '../../bus/todos';
+import { useTodosQuery, useTodosMutations } from '../../bus/todosNew';
 
 // Styles
 import { Header } from './styles';
@@ -23,7 +23,7 @@ export const Main = () => {
 
   const onCreate = () => {
     if (text !== '') {
-      createMutation({ text });
+      createMutation({ body: { text } });
       setText('');
     }
   };
@@ -44,8 +44,10 @@ export const Main = () => {
               key={todo.id}
               isColor={Boolean(index % 2)}
               {...todo}
-              deleteHandler={() => void deleteMutation(todo.id)}
-              updateHandler={() => void updateMutation({ isCompleted: !todo.isCompleted }, todo.id)}
+              deleteHandler={() => void deleteMutation({ todoId: todo.id })}
+              updateHandler={() => void updateMutation({
+                todoId: todo.id, body: { isCompleted: !todo.isCompleted },
+              })}
             />
           ))
         }
